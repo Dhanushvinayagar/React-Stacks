@@ -1,0 +1,7 @@
+.dropdown{
+    height: 30px;
+    width: 100vh;
+    display: flex;
+    margin: 7% 0 0 15%;
+    gap:3%;
+}

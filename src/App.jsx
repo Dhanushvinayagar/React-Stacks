@@ -6,22 +6,22 @@ import Useref from './Usecase/Useref';
 import Login from './Form/Login';
 import Signup from './Form/Signup';
 import Home from './Components/Home';
-
+import './App.css'
+import Homepage from './pages/Homepage';
 const App = () => {
 
   return (
-  <>
+  <div className='App'>
       {/* <Usestate /> */}
       {/* <Useref /> */}
       {/* <Toast /> */}
+      {/* <Home />  */}    {/* parent child relationship */}
       <Routes>
         <Route path="/" element={<Login /> } /> 
         <Route path="/signup" element={ <Signup /> } /> 
-        <Route path="/home" element={<Home /> } /> 
-      </Routes>
-    
-     
-  </>
+        <Route path="/home" element={ <Homepage />} />   
+      </Routes>  
+  </div>
 
   );
 };

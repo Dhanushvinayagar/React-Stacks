@@ -24,6 +24,7 @@ const Signup = () => {
         localStorage.setItem(
             'username',userName.current,
         )
+        localStorage.setItem('auth',false)
         navigate('/')
     }
   return (

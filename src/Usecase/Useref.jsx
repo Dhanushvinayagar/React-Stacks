@@ -40,3 +40,20 @@ const Useref = () => {
 }
 
 export default Useref
+
+
+// Useref input clear
+// import { useRef } from "react";
+
+// export default function App() {
+//   const nameInput = useRef(null);
+//   const clear = () => {
+//     nameInput.current.value = "";
+//   };
+//   return (
+//     <div className="App">
+//       <input ref={nameInput} />    // this will store the current value as the reference to the useref without passing onchange
+//       <button onClick={clear}> wyczyść </button>
+//     </div>
+//   );
+// }
