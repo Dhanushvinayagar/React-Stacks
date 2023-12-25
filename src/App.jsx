@@ -8,6 +8,7 @@ import Signup from './Form/Signup';
 import Home from './Components/Home';
 import './App.css'
 import Homepage from './pages/Homepage';
+import Post from './pages/Post';
 const App = () => {
 
   return (
@@ -20,6 +21,8 @@ const App = () => {
         <Route path="/" element={<Login /> } /> 
         <Route path="/signup" element={ <Signup /> } /> 
         <Route path="/home" element={ <Homepage />} />   
+        <Route path="/post/:id" element={ <Post />} />   
+        
       </Routes>  
   </div>
 
