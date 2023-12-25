@@ -6,6 +6,7 @@ import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import { Button, Modal, Input } from 'antd';
 import { useNavigate } from "react-router-dom";
 import './page.css'
+import Comments from './Comments';
 
 const { Meta } = Card;
 const { TextArea } = Input
@@ -75,51 +76,58 @@ const Post = () => {
     };
 
     return (
-        <div className='post'>
-            <Card
-                hoverable
-                style={{
-                    width: 280,
-                }}
-                cover={<img alt="example" src="https://images.pexels.com/photos/1666021/pexels-photo-1666021.jpeg?cs=srgb&dl=conifers-daylight-environment-1666021.jpg&fm=jpg" width={200} height={300} />}
-            >
-                <Meta title={postId.title} description={postId.body} />
-                <div className="actions">
-                    <div className="edit">
-                        <Button type="primary" onClick={showModal1}>
-                            <EditOutlined style={{ color: 'white', width: '20px', height: '20px' }} />
-                            Edit
-                        </Button>
-                        <Modal
-                            title="Edit"
-                            open={open1}
-                            onOk={handleOk1}
-                            confirmLoading={confirmLoading1}
-                            onCancel={handleCancel1}
-                        >   <p>Title:</p>
-                            <Input value={title} placeholder={title} onChange={(e) => setTitle(e.target.value)} />
-                            <p>Description:</p>
-                            <TextArea rows={4} value={body} onChange={(e) => { setBody(e.target.value) }} />
-                        </Modal>
+        <>
+            <div className='post'>
+                <Card
+                    hoverable
+                    style={{
+                        width: 280,
+                    }}
+                    cover={<img alt="example" src="https://images.pexels.com/photos/1666021/pexels-photo-1666021.jpeg?cs=srgb&dl=conifers-daylight-environment-1666021.jpg&fm=jpg" width={200} height={300} />}
+                >
+                    <Meta title={postId.title} description={postId.body} />
+                    <div className="actions">
+                        <div className="edit">
+                            <Button type="primary" onClick={showModal1}>
+                                <EditOutlined style={{ color: 'white', width: '20px', height: '20px' }} />
+                                Edit
+                            </Button>
+                            <Modal
+                                title="Edit"
+                                open={open1}
+                                onOk={handleOk1}
+                                confirmLoading={confirmLoading1}
+                                onCancel={handleCancel1}
+                            >   <p>Title:</p>
+                                <Input value={title} placeholder={title} onChange={(e) => setTitle(e.target.value)} />
+                                <p>Description:</p>
+                                <TextArea rows={4} value={body} onChange={(e) => { setBody(e.target.value) }} />
+                            </Modal>
+                        </div>
+                        <div className="delete">
+                            <Button type="primary" danger onClick={showModal}>
+                                <DeleteOutlined style={{ color: 'white', width: '20px', height: '20px' }} />
+                                Delete
+                            </Button>
+                            <Modal
+                                title="Delete"
+                                open={open}
+                                onOk={handleOk}
+                                confirmLoading={confirmLoading}
+                                onCancel={handleCancel}
+                            >
+                                <p>{modalText}</p>
+                            </Modal>
+                        </div>
                     </div>
-                    <div className="delete">
-                        <Button type="primary" danger onClick={showModal}>
-                            <DeleteOutlined style={{ color: 'white', width: '20px', height: '20px' }} />
-                            Delete
-                        </Button>
-                        <Modal
-                            title="Delete"
-                            open={open}
-                            onOk={handleOk}
-                            confirmLoading={confirmLoading}
-                            onCancel={handleCancel}
-                        >
-                            <p>{modalText}</p>
-                        </Modal>
-                    </div>
+                </Card>
+                <div className="comments">
+                    <Comments id={id} />
                 </div>
-            </Card>
-        </div>
+            </div>
+            
+        </>
+
     )
 }
 

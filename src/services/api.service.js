@@ -77,4 +77,13 @@ const createNewPost = async (title, desc) => {
     }
 }
 
-export { getPosts, getPostbyId, editPostbyId, deletePostbyId, createNewPost }
+const getComments = async(id)=>{
+    try {
+        let comments = await axios.get(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)
+        return [...comments.data]
+    } catch (error) {
+        console.error("Error occured during comments : ",error);
+    }
+}
+
+export { getPosts, getPostbyId, editPostbyId, deletePostbyId, createNewPost , getComments }
