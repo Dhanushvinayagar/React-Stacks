@@ -1,0 +1,12 @@
+.post{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 1%;
+}
+
+.actions{
+      margin: 15px;
+      display: flex;
+      justify-content: space-between;
+}

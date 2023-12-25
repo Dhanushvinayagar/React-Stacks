@@ -13,10 +13,45 @@ const getPosts = async () => {
 const getPostbyId = async (id) => {
     try {
         let post = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
-        return { ...post.data}
+        return { ...post.data }
     }
     catch (error) {
         console.error("Error in get fetch of post : ", error);
     }
 }
-export { getPosts , getPostbyId }
+
+const editPostbyId = async (id, title, desc) => {
+    try {
+        await axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                id: id,
+                title: title,
+                body: desc,
+                userId: 1,
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+        return true
+    }
+    catch (error) {
+        console.error("Error in get fetch of post : ", error);
+    }
+    return false
+}
+
+const deletePostbyId = async (id) => {
+    try {
+        await axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+            method: 'DELETE',
+        })
+        return true
+    }
+    catch (error) {
+        console.error("Error in get fetch of post : ", error);
+    }
+    return false
+}
+export { getPosts, getPostbyId, editPostbyId, deletePostbyId }
