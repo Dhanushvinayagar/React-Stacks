@@ -40,6 +40,7 @@ const Post = () => {
                 ...prev, title: title, body: body
             }))
             setOpen1(false)
+            setConfirmLoading1(false)
         }).then(err => {
             console.error("Error occured during update : ", err);
         })

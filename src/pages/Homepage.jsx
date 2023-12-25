@@ -40,6 +40,9 @@ const Homepage = () => {
         body : body,
         userId : 1
       }])
+      setTitle('')
+      setBody('')
+      setConfirmLoading1(false)
     }).then(err => {
       console.error("Error occured during post : ", err);
     })
