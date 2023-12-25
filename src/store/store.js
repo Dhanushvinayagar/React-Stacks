@@ -10,7 +10,12 @@ const useStore = create((set) => ({
     )),
     handlePassword : (e) => set((state)=>(
        { login: {...state.login , password : e.target.value} }
-    ))
+    )),
+
+    posts:[],
+    setPosts : (datas)=> set((state)=>(
+        { posts : [...datas] }
+    )) 
 }))
 
 export default useStore
