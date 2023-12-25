@@ -54,4 +54,27 @@ const deletePostbyId = async (id) => {
     }
     return false
 }
-export { getPosts, getPostbyId, editPostbyId, deletePostbyId }
+
+
+const createNewPost = async (title, desc) => {
+    try {
+        const response = await axios.post('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            body: JSON.stringify({
+                title: title,
+                body: desc,
+                userId: 1,
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+
+        console.log(response.data);
+        return response.data
+    } catch (error) {
+        console.error("Error occured during post :", error);
+    }
+}
+
+export { getPosts, getPostbyId, editPostbyId, deletePostbyId, createNewPost }
