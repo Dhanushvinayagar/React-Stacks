@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { signal, effect } from '@preact/signals'
 import { getComments } from '../services/api.service'
 import { Card } from 'antd'

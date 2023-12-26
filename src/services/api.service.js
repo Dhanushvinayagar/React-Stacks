@@ -70,7 +70,6 @@ const createNewPost = async (title, desc) => {
             },
         })
 
-        console.log(response.data);
         return response.data
     } catch (error) {
         console.error("Error occured during post :", error);
