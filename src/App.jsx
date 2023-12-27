@@ -12,6 +12,8 @@ import './App.css'
 import Homepage from './pages/Homepage';
 import Post from './pages/Post';
 import Tanstack from './Tanstack/Tanstack';
+
+// To work on Tanstack run command "npm run serve"
 const App = () => {
 
   return (
