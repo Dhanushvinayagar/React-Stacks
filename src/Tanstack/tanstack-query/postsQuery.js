@@ -3,6 +3,11 @@ import { useQuery } from '@tanstack/react-query'
 
 const postsData = () => axios.get('http://localhost:5080/posts').then(res => res.data)
 const postsDatabyID = (id) => axios.get(`http://localhost:5080/posts/${id}`).then(res => res.data)
+const postsDatawithID = ({queryKey}) =>{
+    const id = queryKey[1]
+    return axios.get(`http://localhost:5080/posts/${id}`).then(res => res.data)
+}
+const commentDataID = () => axios.get(`http://localhost:5080/comments`).then(res => res.data)
 
 // First letter Caps
 const PostQuery = () => useQuery({
@@ -14,5 +19,17 @@ const PostQuerybyID = (id) => useQuery({
     queryKey: ['postsDataId'],
     queryFn: () => postsDatabyID(id),                   // should be function refernced
 })
-0
-export { PostQuery, PostQuerybyID }
+
+const PostQuerywithID = (id) => useQuery({
+    queryKey: ['postsDatawithId',id],
+    queryFn: postsDatawithID,             
+})
+
+const CommentsQuery = (id) => useQuery({
+    queryKey: ['commentDataId'],
+    queryFn: commentDataID,
+    select: (data) => {
+        return data.filter(post => post.postId === id)
+    }
+})
+export { PostQuery, PostQuerybyID, CommentsQuery , PostQuerywithID }
