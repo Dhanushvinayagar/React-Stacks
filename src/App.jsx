@@ -12,10 +12,11 @@ import './App.css'
 import Homepage from './pages/Homepage';
 import Post from './pages/Post';
 import Tanstack from './Tanstack/Tanstack';
+import TanstackId from './Tanstack/TanstackId';
 
 // To work on Tanstack run command "npm run serve"
 const App = () => {
-
+  // console.log(process.env.REACT_APP_BASE_URL);
   return (
     <div className='App'>
       {/* <Usestate /> */}
@@ -27,8 +28,14 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Homepage />} />
         <Route path="/post/:id" element={<Post />} />
+
+       
         {/* <Route path="/memo" element={<Memorize />} />       useCallback useMemo */}
+
+        {/* tanstack query */}
         <Route path="/tanstack" element={<Tanstack />} />
+        <Route path="/tanstack/:id" element={<TanstackId />} />
+
         <Route path="*" element={<p>Page not found</p>} />
       </Routes>
     </div>
