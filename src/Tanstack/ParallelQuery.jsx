@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { CommentsQuery, PostQuerywithID } from './tanstack-query/postsQuery'
+import { CommentsQuery, DynamicQuerying, PostQuerywithID } from './tanstack-query/postsQuery'
 import { Card } from 'antd';
 
 const ParallelQuery = () => {
     const [id, setId] = useState(1)
     const { isLoading: postLoading, error: postError, data: post } = PostQuerywithID(Number(id))
-    const { isLoading: commentLoading, error: commentError , data: comments } = CommentsQuery(Number(id))
+    const { isLoading: commentLoading, error: commentError, data: comments } = CommentsQuery(Number(id))
+
+    const dynamicData = DynamicQuerying([1, 3, 5])          //collects the fetch for this particular data
 
     if (postLoading || commentLoading) return 'Loading...'
     if (postError || commentError) return 'Error : '
@@ -23,8 +25,20 @@ const ParallelQuery = () => {
                         <p>{comment.body}</p>
                     </Card>
                 )}
-
             </Card>
+            <br />
+            Dynamic Querying
+            <hr />
+            <>
+                {
+                    dynamicData.map((eachQuery, index) =>
+                        <Card title={eachQuery.data.title} bordered={false} style={{ width: '75%', marginTop: '5px', marginBottom: '5px' }} key={index} >
+                            <p>{eachQuery.data.body}</p>
+                        </Card>
+                    )
+                }
+            </>
+
         </div>
     )
 }

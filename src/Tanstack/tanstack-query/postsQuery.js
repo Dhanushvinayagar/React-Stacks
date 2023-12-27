@@ -1,9 +1,9 @@
 import axios from 'axios'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueries } from '@tanstack/react-query'
 
 const postsData = () => axios.get('http://localhost:5080/posts').then(res => res.data)
 const postsDatabyID = (id) => axios.get(`http://localhost:5080/posts/${id}`).then(res => res.data)
-const postsDatawithID = ({queryKey}) =>{
+const postsDatawithID = ({ queryKey }) => {
     const id = queryKey[1]
     return axios.get(`http://localhost:5080/posts/${id}`).then(res => res.data)
 }
@@ -21,8 +21,8 @@ const PostQuerybyID = (id) => useQuery({
 })
 
 const PostQuerywithID = (id) => useQuery({
-    queryKey: ['postsDatawithId',id],
-    queryFn: postsDatawithID,             
+    queryKey: ['postsDatawithId', id],
+    queryFn: postsDatawithID,
 })
 
 const CommentsQuery = (id) => useQuery({
@@ -32,4 +32,16 @@ const CommentsQuery = (id) => useQuery({
         return data.filter(post => post.postId === id)
     }
 })
-export { PostQuery, PostQuerybyID, CommentsQuery , PostQuerywithID }
+
+const DynamicQuerying = (array) =>
+    useQueries({
+        queries: array.map((id) => {
+            return {
+                queryKey: ['postsDatausingId', id],
+                queryFn: postsDatawithID,
+            }
+        }),
+    })
+
+
+export { PostQuery, PostQuerybyID, CommentsQuery, PostQuerywithID, DynamicQuerying }
