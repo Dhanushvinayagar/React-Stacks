@@ -7,6 +7,14 @@ const postsDatawithID = ({ queryKey }) => {
     const id = queryKey[1]
     return axios.get(`http://localhost:5080/posts/${id}`).then(res => res.data)
 }
+const studentDatabyId  = ({ queryKey }) => {
+    const id = queryKey[1]
+    return axios.get(`http://localhost:5080/student/${id}`).then(res => res.data)
+}
+const staffDatabyId  = ({ queryKey }) => {
+    const id = queryKey[1]
+    return axios.get(`http://localhost:5080/staff/${id}`).then(res => res.data)
+}
 const commentDataID = () => axios.get(`http://localhost:5080/comments`).then(res => res.data)
 
 // First letter Caps
@@ -43,5 +51,14 @@ const DynamicQuerying = (array) =>
         }),
     })
 
+const StudentQuery = (id) => useQuery({
+    queryKey: ['student',id],
+    queryFn:  studentDatabyId
+})
+const StaffQuery = (id) => useQuery({
+    queryKey: ['staff',id],
+    queryFn:  staffDatabyId
+})
 
-export { PostQuery, PostQuerybyID, CommentsQuery, PostQuerywithID, DynamicQuerying }
+
+export { PostQuery, PostQuerybyID, CommentsQuery, PostQuerywithID, DynamicQuerying, StudentQuery ,StaffQuery }
