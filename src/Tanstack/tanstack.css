@@ -3,3 +3,9 @@
     justify-content: center;
     margin-bottom: 5px ;
 }
+
+.top{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}
