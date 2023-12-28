@@ -5,6 +5,7 @@ import UsequeryDataSelect from './UsequeryDataSelect'
 import UseQueryRefactor from './UseQueryRefactor'
 import ParallelQuery from './ParallelQuery'
 import DependentQuery from './DependentQuery'
+import PaginaiedQuery from './PaginaiedQuery'
 
 const Tanstack = () => {
     return (
@@ -12,9 +13,10 @@ const Tanstack = () => {
             {/* <Usequery /> */}
             {/* <UseQueryonClick /> */}
             {/* <UsequeryDataSelect /> */}
-            <UseQueryRefactor />
+            {/* <UseQueryRefactor /> */}
             {/* <ParallelQuery /> */}
             {/* <DependentQuery /> */}
+            <PaginaiedQuery />
         </>
     )
 }

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useQuery, useQueries  } from '@tanstack/react-query'
+import {  keepPreviousData,useQuery, useQueries  } from '@tanstack/react-query'
 
 const postsData = () => axios.get('http://localhost:5080/posts').then(res => res.data)
 const postsDatabyID = (id) => axios.get(`http://localhost:5080/posts/${id}`).then(res => res.data)
@@ -16,6 +16,10 @@ const staffDatabyId = ({ queryKey }) => {
     return axios.get(`http://localhost:5080/staff/${id}`).then(res => res.data)
 }
 const commentDataID = () => axios.get(`http://localhost:5080/comments`).then(res => res.data)
+const colorData = ({ queryKey }) =>{
+    const id = queryKey[1]
+    return axios.get(`http://localhost:5080/colors?_limit=2&_page=${id}`).then(res => res.data)
+}  
 
 // First letter Caps
 const PostQuery = () => useQuery({
@@ -67,4 +71,10 @@ const StaffQuery = (id) => useQuery({
 })
 
 
-export { PostQuery, PostQuerybyID, CommentsQuery, PostQuerywithID, DynamicQuerying, StudentQuery, StaffQuery }
+const ColorQuery = (pageNo) =>useQuery({
+    queryKey : ['color',pageNo],
+    queryFn : colorData,
+    placeholderData: keepPreviousData
+})
+
+export { PostQuery, PostQuerybyID, CommentsQuery, PostQuerywithID, DynamicQuerying, StudentQuery, StaffQuery , ColorQuery}
