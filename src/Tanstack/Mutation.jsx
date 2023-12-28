@@ -1,19 +1,23 @@
 import React, { useState } from 'react'
 import { AddHeroMutation, HeroQuery } from './tanstack-query/mutation'
+import { useQueryClient } from '@tanstack/react-query'
 
 const Mutation = () => {
+
+    const queryClient = useQueryClient()
+
     const [name, setName] = useState('')
     const [nick, setNick] = useState('')
 
     const { isLoading, error, data } = HeroQuery()
-    const { mutate ,isLoading : load , error : err } = AddHeroMutation()
+    const { mutate, isLoading: load, error: err } = AddHeroMutation(queryClient)
 
     if (isLoading || load) return 'Loading...'
-    if (error || err ) return 'Error' + err
+    if (error || err) return 'Error' + err
 
-    const handleClick = () =>{
-        if(name && nick){
-            mutate({ id : data.length+1 ,name, superhero:nick})
+    const handleClick = () => {
+        if (name && nick) {
+            mutate({ id: data.length + 1, name, superhero: nick })
         }
     }
     return (

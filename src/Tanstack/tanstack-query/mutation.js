@@ -10,8 +10,12 @@ const HeroQuery = () => useQuery({
     queryFn: herosData,
 })
 
-const AddHeroMutation = () => useMutation({
-    mutationFn: postHeroData
+const AddHeroMutation = (queryClient) => useMutation({
+    mutationFn: postHeroData,
+
+    onSuccess : () => {                                 // if commented the post happens and after refreshing the browser you can refetch the data
+        queryClient.invalidateQueries(['herosData'])            // This helps to identify the mutation happens during post , if not post happens but once after the refetch only the data re-renders
+    }
 })
 
 

@@ -4245,6 +4245,11 @@
       "id": 5,
       "name": "Logan",
       "superhero": "Wolverine"
+    },
+    {
+      "id": 6,
+      "name": "Tchalla",
+      "superhero": "Black panther"
     }
   ]
 }
