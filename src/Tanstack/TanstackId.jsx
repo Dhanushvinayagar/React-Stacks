@@ -1,19 +1,20 @@
 import React from 'react'
 import { useParams } from "react-router-dom";
 import { PostQuerybyID } from './tanstack-query/postsQuery';
-
+import { useQueryClient } from '@tanstack/react-query'
 
 const styles = {
-   display : 'flex',
-   flexDirection : 'column',
-   justifyContent : 'center',
-   alignItems : 'center',
-   margin : '1%'
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: '1%'
 }
 const TanstackId = () => {
     const { id } = useParams()
+    const queryClient = useQueryClient();
 
-    const { isPending, error, data } = PostQuerybyID(id)
+    const { isPending, error, data } = PostQuerybyID(id , queryClient)
 
     if (isPending) return 'Loading...'
 

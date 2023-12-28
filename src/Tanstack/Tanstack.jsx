@@ -12,9 +12,9 @@ const Tanstack = () => {
             {/* <Usequery /> */}
             {/* <UseQueryonClick /> */}
             {/* <UsequeryDataSelect /> */}
-            {/* <UseQueryRefactor /> */}
+            <UseQueryRefactor />
             {/* <ParallelQuery /> */}
-            <DependentQuery />
+            {/* <DependentQuery /> */}
         </>
     )
 }

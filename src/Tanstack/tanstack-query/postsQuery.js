@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useQuery, useQueries } from '@tanstack/react-query'
+import { useQuery, useQueries  } from '@tanstack/react-query'
 
 const postsData = () => axios.get('http://localhost:5080/posts').then(res => res.data)
 const postsDatabyID = (id) => axios.get(`http://localhost:5080/posts/${id}`).then(res => res.data)
@@ -7,11 +7,11 @@ const postsDatawithID = ({ queryKey }) => {
     const id = queryKey[1]
     return axios.get(`http://localhost:5080/posts/${id}`).then(res => res.data)
 }
-const studentDatabyId  = ({ queryKey }) => {
+const studentDatabyId = ({ queryKey }) => {
     const id = queryKey[1]
     return axios.get(`http://localhost:5080/student/${id}`).then(res => res.data)
 }
-const staffDatabyId  = ({ queryKey }) => {
+const staffDatabyId = ({ queryKey }) => {
     const id = queryKey[1]
     return axios.get(`http://localhost:5080/staff/${id}`).then(res => res.data)
 }
@@ -23,9 +23,15 @@ const PostQuery = () => useQuery({
     queryFn: postsData,                             // should not be function referenced
 })
 
-const PostQuerybyID = (id) => useQuery({
+const PostQuerybyID = (id,queryClient) => useQuery({
     queryKey: ['postsDataId'],
     queryFn: () => postsDatabyID(id),                   // should be function refernced
+
+    // used to display the postData and the background fetch data will override this later
+    // initialData: () => {
+    //     const post = queryClient.getQueryData('postData')?.data.find((post) => post.id === Number(id))
+    //     return {data:post}
+    // }
 })
 
 const PostQuerywithID = (id) => useQuery({
@@ -52,13 +58,13 @@ const DynamicQuerying = (array) =>
     })
 
 const StudentQuery = (id) => useQuery({
-    queryKey: ['student',id],
-    queryFn:  studentDatabyId
+    queryKey: ['student', id],
+    queryFn: studentDatabyId
 })
 const StaffQuery = (id) => useQuery({
-    queryKey: ['staff',id],
-    queryFn:  staffDatabyId
+    queryKey: ['staff', id],
+    queryFn: staffDatabyId
 })
 
 
-export { PostQuery, PostQuerybyID, CommentsQuery, PostQuerywithID, DynamicQuerying, StudentQuery ,StaffQuery }
+export { PostQuery, PostQuerybyID, CommentsQuery, PostQuerywithID, DynamicQuerying, StudentQuery, StaffQuery }

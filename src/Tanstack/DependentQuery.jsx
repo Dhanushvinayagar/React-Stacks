@@ -5,12 +5,15 @@ import { StudentQuery, StaffQuery } from './tanstack-query/postsQuery';
 // Based on data from one fetch the data of other depends
 const DependentQuery = () => {
     const [id, setId] = useState(1)
-    const { isLoading, error, data:student } = StudentQuery(id)
+    const { isLoading, error, data: student } = StudentQuery(id)
     // console.log(data);
     const { isLoading: loading, error: err, data: staff } = StaffQuery(student?.staffId)
     // console.log(staff);
     if (isLoading || loading) return 'Loading'
-    if (error || err) return 'Error'
+    if (error || err)
+        return <>
+            <input type='number' value={id} onChange={(e) => setId(e.target.value)} /> 'No data'
+        </>
 
     return (
         <div>
