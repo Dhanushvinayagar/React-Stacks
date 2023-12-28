@@ -4250,6 +4250,36 @@
       "id": 6,
       "name": "Tchalla",
       "superhero": "Black panther"
+    },
+    {
+      "id": 7,
+      "name": "Strange",
+      "superhero": "Soccersor"
+    },
+    {
+      "id": 8,
+      "name": "Scott",
+      "superhero": "Ant man"
+    },
+    {
+      "id": 9,
+      "name": "Barry",
+      "superhero": "Flash"
+    },
+    {
+      "id": 10,
+      "name": "Diana",
+      "superhero": "WW"
+    },
+    {
+      "id": 11,
+      "name": "Diana",
+      "superhero": "WW-84"
+    },
+    {
+      "id": 12,
+      "name": "Ryan",
+      "superhero": "DP"
     }
   ]
 }
