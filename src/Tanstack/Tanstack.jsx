@@ -10,6 +10,7 @@ import PaginaiedQuery from './PaginaiedQuery'
 import InfiniteQuery from './InfiniteQuery'
 //useMutations
 import Mutation from './Mutation'
+import Prefetch from './Prefetch'
 
 const Tanstack = () => {
     return (
@@ -25,7 +26,8 @@ const Tanstack = () => {
                 {/* <InfiniteQuery /> */}
             </>
             <>
-                <Mutation />
+                {/* <Mutation /> */}
+                <Prefetch />
             </>
         </>
     )

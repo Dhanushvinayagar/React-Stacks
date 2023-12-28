@@ -10,6 +10,14 @@ const HeroQuery = () => useQuery({
     queryFn: herosData,
 })
 
+const HeroQueryClick = () => useQuery({
+    queryKey: ['herosData'],
+    queryFn: herosData,
+    enabled : false,
+    // Default value displayed in UI before fetching the data
+    placeholderData : [ {'id' : 1 , "name" : "inital placeholderData" , "superhero" : "Superhero"}]
+})
+
 const AddHeroMutation = (queryClient) => useMutation({
     mutationFn: postHeroData,
     // retry : 3                // retry 3 times when the data fails
@@ -23,5 +31,4 @@ const AddHeroMutation = (queryClient) => useMutation({
     }
 })
 
-
-export { HeroQuery, AddHeroMutation }
+export { HeroQuery, AddHeroMutation ,HeroQueryClick}
