@@ -6,6 +6,7 @@ import UseQueryRefactor from './UseQueryRefactor'
 import ParallelQuery from './ParallelQuery'
 import DependentQuery from './DependentQuery'
 import PaginaiedQuery from './PaginaiedQuery'
+import InfiniteQuery from './InfiniteQuery'
 
 const Tanstack = () => {
     return (
@@ -16,7 +17,8 @@ const Tanstack = () => {
             {/* <UseQueryRefactor /> */}
             {/* <ParallelQuery /> */}
             {/* <DependentQuery /> */}
-            <PaginaiedQuery />
+            {/* <PaginaiedQuery /> */}
+            <InfiniteQuery />
         </>
     )
 }

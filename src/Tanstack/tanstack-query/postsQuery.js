@@ -1,25 +1,35 @@
 import axios from 'axios'
-import {  keepPreviousData,useQuery, useQueries  } from '@tanstack/react-query'
+import { keepPreviousData, useQuery, useQueries, useInfiniteQuery } from '@tanstack/react-query'
 
 const postsData = () => axios.get('http://localhost:5080/posts').then(res => res.data)
+
 const postsDatabyID = (id) => axios.get(`http://localhost:5080/posts/${id}`).then(res => res.data)
+
 const postsDatawithID = ({ queryKey }) => {
     const id = queryKey[1]
     return axios.get(`http://localhost:5080/posts/${id}`).then(res => res.data)
 }
+
 const studentDatabyId = ({ queryKey }) => {
     const id = queryKey[1]
     return axios.get(`http://localhost:5080/student/${id}`).then(res => res.data)
 }
+
 const staffDatabyId = ({ queryKey }) => {
     const id = queryKey[1]
     return axios.get(`http://localhost:5080/staff/${id}`).then(res => res.data)
 }
+
 const commentDataID = () => axios.get(`http://localhost:5080/comments`).then(res => res.data)
-const colorData = ({ queryKey }) =>{
+
+const colorData = ({ queryKey }) => {
     const id = queryKey[1]
     return axios.get(`http://localhost:5080/colors?_limit=2&_page=${id}`).then(res => res.data)
-}  
+}
+
+const allcolorData = ({ pageParam = 1 }) => {
+    return axios.get(`http://localhost:5080/colors?_limit=2&_page=${pageParam}`).then(res => res.data)
+}
 
 // First letter Caps
 const PostQuery = () => useQuery({
@@ -27,7 +37,7 @@ const PostQuery = () => useQuery({
     queryFn: postsData,                             // should not be function referenced
 })
 
-const PostQuerybyID = (id,queryClient) => useQuery({
+const PostQuerybyID = (id, queryClient) => useQuery({
     queryKey: ['postsDataId'],
     queryFn: () => postsDatabyID(id),                   // should be function refernced
 
@@ -71,10 +81,22 @@ const StaffQuery = (id) => useQuery({
 })
 
 
-const ColorQuery = (pageNo) =>useQuery({
-    queryKey : ['color',pageNo],
-    queryFn : colorData,
+const ColorQuery = (pageNo) => useQuery({
+    queryKey: ['color', pageNo],
+    queryFn: colorData,
     placeholderData: keepPreviousData
 })
 
-export { PostQuery, PostQuerybyID, CommentsQuery, PostQuerywithID, DynamicQuerying, StudentQuery, StaffQuery , ColorQuery}
+const ColorInfiniteQuery = () => useInfiniteQuery({
+    queryKey: ['colors'],
+    queryFn: allcolorData,
+    getNextPageParam : (_lastPage , pages) =>{
+        if(pages.length < 3){
+            return pages.length +1
+        }else{
+            return;
+        }
+    }
+})
+
+export { PostQuery, PostQuerybyID, CommentsQuery, PostQuerywithID, DynamicQuerying, StudentQuery, StaffQuery, ColorQuery, ColorInfiniteQuery }
