@@ -29,8 +29,13 @@ const App = () => {
         <Route path="/home" element={<Homepage />} />
         <Route path="/post/:id" element={<Post />} />
 
-       
-        {/* <Route path="/memo" element={<Memorize />} />       useCallback useMemo */}
+
+        {/* useCallback useMemo */}
+        <Route path="/usestate" element={<Usestate />} />
+        <Route path="/useref" element={<Useref />} />
+        <Route path="/toast" element={<Toast />} />
+        <Route path="/props" element={<Home />} />
+        <Route path="/memo" element={<Memorize />} />
 
         {/* tanstack query */}
         <Route path="/tanstack" element={<Tanstack />} />
