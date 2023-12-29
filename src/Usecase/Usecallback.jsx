@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect,  useRef, useState } from 'react'
+import React, { useState , useCallback, useEffect, useRef } from 'react'
 import Displaydata from './Displaydata'
 import { getPosts } from '../services/api.service'
 
-const Usecallback = () => {
+const Usecallback = ( ) => {
     const [number, setNumber] = useState(1)
     const data = useRef([])
     const [datas, setData] = useState([])
@@ -12,18 +12,18 @@ const Usecallback = () => {
             data.userId === id
         )
         setData(filteredDatas);
-    }, [data])
+    }, [datas])
 
 
     useEffect(() => {
         getPosts().then(res => { data.current = [...res]; filters(1) })
     }, [])
 
-    console.log("usecallback rerendered");
     return (
         <div>
             <input type="number" value={number} onChange={(e) => setNumber(Number(e.target.value))} />
             <button onClick={()=>filters(number)}>Callback</button>
+            
             <Displaydata datas={datas} />
         </div>
     )

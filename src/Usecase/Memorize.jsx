@@ -1,4 +1,5 @@
 import React from 'react'
+
 import Usememo from './Usememo'
 import Usecallback from './Usecallback'
 
@@ -8,8 +9,7 @@ const Memorize = () => {
     return (
         <div>
             Memorize
-            <Usecallback />
-
+            <Usecallback  />
             <br />
             <Usememo />
         </div>
