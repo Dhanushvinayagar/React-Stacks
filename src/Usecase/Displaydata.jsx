@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Displaydata = ({ datas }) => {
-    console.log(" child component rendered");
+    console.log(" Display component rendered");
     return (
         <>
             <div>
