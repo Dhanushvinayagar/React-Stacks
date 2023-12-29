@@ -40,12 +40,6 @@ const PostQuery = () => useQuery({
 const PostQuerybyID = (id, queryClient) => useQuery({
     queryKey: ['postsDataId'],
     queryFn: () => postsDatabyID(id),                   // should be function refernced
-
-    // used to display the postData and the background fetch data will override this later
-    // initialData: () => {
-    //     const post = queryClient.getQueryData('postData')?.data.find((post) => post.id === Number(id))
-    //     return {data:post}
-    // }
 })
 
 const PostQuerywithID = (id) => useQuery({
