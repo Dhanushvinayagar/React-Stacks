@@ -4,7 +4,7 @@ import Usequery from './Usequery'
 import UseQueryonClick from './UseQueryonClick'
 import UsequeryDataSelect from './UsequeryDataSelect'
 import UseQueryRefactor from './UseQueryRefactor'
-import ParallelQuery from './ParallelQuery'
+import ParallelQuery from './ParallelQuery' //Dynamic queries which also helps in data fetching of all datas in a single  array or object 
 import DependentQuery from './DependentQuery'
 import PaginaiedQuery from './PaginaiedQuery'
 import InfiniteQuery from './InfiniteQuery'
@@ -27,7 +27,7 @@ const Tanstack = () => {
             </>
             <>
                 {/* <Mutation /> */}
-                <Prefetch />
+                {/* <Prefetch /> */}
             </>
         </>
     )

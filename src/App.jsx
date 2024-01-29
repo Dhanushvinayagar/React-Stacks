@@ -13,6 +13,7 @@ import Homepage from './pages/Homepage';
 import Post from './pages/Post';
 import Tanstack from './Tanstack/Tanstack';
 import TanstackId from './Tanstack/TanstackId';
+import Source from './Cases/Source';
 
 // To work on Tanstack run command "npm run serve"
 const App = () => {
@@ -40,6 +41,10 @@ const App = () => {
         {/* tanstack query */}
         <Route path="/tanstack" element={<Tanstack />} />
         <Route path="/tanstack/:id" element={<TanstackId />} />
+
+        {/* Packages */}
+        <Route path="/packages" element={<Source />} />
+
 
         <Route path="*" element={<p>Page not found</p>} />
       </Routes>
